@@ -1,0 +1,7 @@
+apiVersion: app.example.com/v1alpha1
+kind: PodReplica
+metadata:
+  name: example-podreplica
+spec:
+  # Add fields here
+  size: 3
