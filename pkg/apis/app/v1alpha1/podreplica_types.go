@@ -10,6 +10,7 @@ import (
 // PodReplicaSpec defines the desired state of PodReplica
 // +k8s:openapi-gen=true
 type PodReplicaSpec struct {
+	Size int32 `json:"size"`
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
@@ -18,6 +19,7 @@ type PodReplicaSpec struct {
 // PodReplicaStatus defines the observed state of PodReplica
 // +k8s:openapi-gen=true
 type PodReplicaStatus struct {
+	Replicas []string `json:"replicas"`
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
