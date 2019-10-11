@@ -112,7 +112,7 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 	// Update pod names (in status)
 	if !reflect.DeepEqual(podReplica.Status.Replicas, runningReplicaPodNames) {
 		podReplica.Status.Replicas = runningReplicaPodNames
-		err := r.client.Update(context.TODO(), podReplica)
+		err := r.client.Status().Update(context.TODO(), podReplica)
 		if err != nil {
 			reqLogger.Error(err, "💥 Failed to update podreplica")
 			return reconcile.Result{}, err
