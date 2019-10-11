@@ -139,7 +139,7 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 	}
 
 	// scale up replicas
-	if int32(len(runningReplicaPodNames)) > podReplica.Spec.Size {
+	if int32(len(runningReplicaPodNames)) < podReplica.Spec.Size {
 		// Define a new Pod object
 		pod := newPodForCR(podReplica)
 		reqLogger.Info("👶 Creating a new Pod", "Pod.Namespace", pod.Namespace, "Pod.Name", pod.Name)
