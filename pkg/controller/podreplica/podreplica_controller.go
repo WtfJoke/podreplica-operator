@@ -121,6 +121,12 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 
 	reqLogger.Info("👀 Checking podreplicas", "expected replicas", podReplica.Spec.Size, "Pod.Names", runningReplicaPodNames)
 
+	// we have enough replicas
+	if int32(len(runningReplicaPodNames)) == podReplica.Spec.Size {
+		reqLogger.Info("⏭️ Skip reconcile: Enough replicas")
+		return reconcile.Result{}, nil
+	}
+
 	// scale down replicas
 	if int32(len(runningReplicaPodNames)) > podReplica.Spec.Size {
 		podToBeDeleted := existingReplicaPods.Items[0]
@@ -147,11 +153,6 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 		if err := controllerutil.SetControllerReference(podReplica, pod, r.scheme); err != nil {
 			return reconcile.Result{}, err
 		}
-	}
-
-	if int32(len(runningReplicaPodNames)) == podReplica.Spec.Size {
-		reqLogger.Info("⏭️ Skip reconcile: Enough replicas")
-		return reconcile.Result{}, nil
 	}
 
 	// requeue for additional scaling or updating pod names
