@@ -143,16 +143,20 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 		// Define a new Pod object
 		pod := newPodForCR(podReplica)
 		reqLogger.Info("👶 Creating a new Pod", "Pod.Namespace", pod.Namespace, "Pod.Name", pod.Name)
+
+		// Set PodReplica instance as the owner and controller
+		if err := controllerutil.SetControllerReference(podReplica, pod, r.scheme); err != nil {
+			reqLogger.Error(err, "💥 Failed to create a pod")
+			return reconcile.Result{}, err
+		}
+
+		// create pod
 		err = r.client.Create(context.TODO(), pod)
 		if err != nil {
 			reqLogger.Error(err, "💥 Failed to create a pod")
 			return reconcile.Result{}, err
 		}
 
-		// Set PodReplica instance as the owner and controller
-		if err := controllerutil.SetControllerReference(podReplica, pod, r.scheme); err != nil {
-			return reconcile.Result{}, err
-		}
 	}
 
 	// requeue for additional scaling or updating pod names
