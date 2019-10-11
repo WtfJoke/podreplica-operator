@@ -166,9 +166,9 @@ func newPodForCR(cr *appv1alpha1.PodReplica) *corev1.Pod {
 	}
 	return &corev1.Pod{
 		ObjectMeta: metav1.ObjectMeta{
-			Name:      cr.Name + "-pod",
-			Namespace: cr.Namespace,
-			Labels:    labels,
+			GenerateName: cr.Name + "-pod",
+			Namespace:    cr.Namespace,
+			Labels:       labels,
 		},
 		Spec: corev1.PodSpec{
 			Containers: []corev1.Container{
