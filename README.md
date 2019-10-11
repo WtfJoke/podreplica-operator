@@ -46,4 +46,4 @@ kubectl create -f deploy/role_binding.yaml
 kubectl create -f deploy/operator.yaml
 ```
 
-Afterwards you can follow (#create-custom-resource)
+Afterwards you can follow [Create Custom Resource](#create-custom-resource)
