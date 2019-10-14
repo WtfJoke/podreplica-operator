@@ -40,6 +40,7 @@ docker push <user>/podreplica-operator:v0.0.1
 
 ### Create PodReplica Operator
 Register CRD:
+
 `kubectl create -f deploy/crds/app.example.com_podreplicas_crd.yaml`
 
 Create RBAC and Operator:
