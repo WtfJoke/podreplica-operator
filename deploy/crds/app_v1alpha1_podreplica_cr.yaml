@@ -3,5 +3,4 @@ kind: PodReplica
 metadata:
   name: example-podreplica
 spec:
-  # Add fields here
   size: 3
