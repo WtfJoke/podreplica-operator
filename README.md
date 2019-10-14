@@ -51,3 +51,15 @@ kubectl create -f deploy/operator.yaml
 ```
 
 Afterwards you can follow [Create Custom Resource](#create-custom-resource)
+
+
+### Remove PodReplica Operator
+
+```
+kubectl create -f deploy/crds/app_v1alpha1_podreplica_cr.yaml
+kubectl delete -f deploy/crds/app_v1alpha1_podreplica_crd.yaml
+kubectl delete -f deploy/operator.yaml
+kubectl delete -f deploy/role_binding.yaml
+kubectl delete -f deploy/role.yaml
+kubectl delete -f deploy/service_account.yaml
+```
