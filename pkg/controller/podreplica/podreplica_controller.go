@@ -8,7 +8,6 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller"
@@ -96,12 +95,13 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 
 	// Fetch existing replica pods
 	existingReplicaPods := &corev1.PodList{}
-	existingReplicaPodsQuery := &client.ListOptions{
-		Namespace:     request.Namespace,
-		LabelSelector: labels.SelectorFromSet(labelsForPodReplicas(request.Name)),
+
+	existingReplicaPodsQuery := []client.ListOption{
+		client.InNamespace(request.Namespace),
+		client.MatchingLabels(labelsForPodReplicas(request.Name)),
 	}
 
-	err = r.client.List(context.TODO(), existingReplicaPodsQuery, existingReplicaPods)
+	err = r.client.List(context.TODO(), existingReplicaPods, existingReplicaPodsQuery...)
 	if err != nil {
 		reqLogger.Error(err, "💥 Failed to list existing pods in the podreplica")
 		return reconcile.Result{}, err

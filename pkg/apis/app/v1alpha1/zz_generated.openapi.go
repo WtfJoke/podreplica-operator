@@ -22,6 +22,7 @@ func schema_pkg_apis_app_v1alpha1_PodReplica(ref common.ReferenceCallback) commo
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "PodReplica is the Schema for the podreplicas API",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
 						SchemaProps: spec.SchemaProps{
@@ -65,6 +66,7 @@ func schema_pkg_apis_app_v1alpha1_PodReplicaSpec(ref common.ReferenceCallback) c
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "PodReplicaSpec defines the desired state of PodReplica",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"size": {
 						SchemaProps: spec.SchemaProps{
@@ -76,7 +78,6 @@ func schema_pkg_apis_app_v1alpha1_PodReplicaSpec(ref common.ReferenceCallback) c
 				Required: []string{"size"},
 			},
 		},
-		Dependencies: []string{},
 	}
 }
 
@@ -85,6 +86,7 @@ func schema_pkg_apis_app_v1alpha1_PodReplicaStatus(ref common.ReferenceCallback)
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
 				Description: "PodReplicaStatus defines the observed state of PodReplica",
+				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"replicas": {
 						SchemaProps: spec.SchemaProps{
@@ -103,6 +105,5 @@ func schema_pkg_apis_app_v1alpha1_PodReplicaStatus(ref common.ReferenceCallback)
 				Required: []string{"replicas"},
 			},
 		},
-		Dependencies: []string{},
 	}
 }

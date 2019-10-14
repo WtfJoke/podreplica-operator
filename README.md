@@ -1,12 +1,12 @@
-# Ordered Chaos Monkey Operator
-This k8 operator is created for demonstrating purpose using the [operator-sdk](https://github.com/operator-framework/operator-sdk). 
+# PodReplica Operator
+This k8 operator is created for demonstrating purpose using the [operator-sdk](https://github.com/operator-framework/operator-sdk) in version `v0.11.0`. 
 It introduces a new Custom Ressource Definition (CRD) "PodReplica". 
 It works like a regular k8 deployment.
 
 ### Run locally (instead of Build & Publish)
 Register CRD:
 
-`kubectl create -f deploy/crds/app_v1alpha1_podreplica_crd.yaml`
+`kubectl create -f deploy/crds/app.example.com_podreplicas_crd.yaml`
 
 Set operator name as environment variable
 
@@ -40,7 +40,7 @@ docker push <user>/podreplica-operator:v0.0.1
 
 ### Create PodReplica Operator
 Register CRD:
-`kubectl create -f deploy/crds/app_v1alpha1_podreplica_crd.yaml`
+`kubectl create -f deploy/crds/app.example.com_podreplicas_crd.yaml`
 
 Create RBAC and Operator:
 ```
@@ -56,8 +56,8 @@ Afterwards you can follow [Create Custom Resource](#create-custom-resource)
 ### Remove PodReplica Operator
 
 ```
-kubectl create -f deploy/crds/app_v1alpha1_podreplica_cr.yaml
-kubectl delete -f deploy/crds/app_v1alpha1_podreplica_crd.yaml
+kubectl delete -f deploy/crds/app.example.com_v1alpha1_podreplica_cr.yaml
+kubectl delete -f deploy/crds/app.example.com_podreplicas_crd.yaml
 kubectl delete -f deploy/operator.yaml
 kubectl delete -f deploy/role_binding.yaml
 kubectl delete -f deploy/role.yaml

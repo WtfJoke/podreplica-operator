@@ -30,6 +30,7 @@ type PodReplicaStatus struct {
 // PodReplica is the Schema for the podreplicas API
 // +k8s:openapi-gen=true
 // +kubebuilder:subresource:status
+// +kubebuilder:resource:path=podreplicas,scope=Namespaced
 type PodReplica struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
