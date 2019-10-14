@@ -16,7 +16,7 @@ spec:
       containers:
         - name: podreplica-operator
           # Replace this with the built image name
-          image: REPLACE_IMAGE
+          image: dxjoke/podreplica-operator:v0.0.1
           command:
           - podreplica-operator
           imagePullPolicy: Always
