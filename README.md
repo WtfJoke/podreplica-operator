@@ -1,7 +1,7 @@
 # Ordered Chaos Monkey Operator
 This k8 operator is created for demonstrating purpose using the [operator-sdk](https://github.com/operator-framework/operator-sdk). 
-It introduces a new Custom Ressource (Definition) "PodReplica". 
-It works like a regular k8 deployment just with a predefined busybox image which sleeps.
+It introduces a new Custom Ressource Definition (CRD) "PodReplica". 
+It works like a regular k8 deployment.
 
 ### Run locally (instead of Build & Publish)
 Register CRD:
