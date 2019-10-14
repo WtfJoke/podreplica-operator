@@ -159,8 +159,7 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 
 	}
 
-	// requeue for additional scaling or updating pod names
-	return reconcile.Result{Requeue: true}, nil
+	return reconcile.Result{}, nil
 }
 
 // newPodForCR returns a busybox pod with the same name/namespace as the cr
