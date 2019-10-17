@@ -150,12 +150,10 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 		}
 
 		// create pod
-		err = r.client.Create(context.TODO(), pod)
-		if err != nil {
+		if err := r.client.Create(context.TODO(), pod); err != nil {
 			reqLogger.Error(err, "💥 Failed to create a pod")
 			return reconcile.Result{}, err
 		}
-
 	}
 
 	return reconcile.Result{}, nil
