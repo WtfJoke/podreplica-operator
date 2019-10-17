@@ -46,7 +46,6 @@ func add(mgr manager.Manager, r reconcile.Reconciler) error {
 		return err
 	}
 
-	// TODO(user): Modify this to be the types you create that are owned by the primary resource
 	// Watch for changes to secondary resource Pods and requeue the owner PodReplica
 	err = c.Watch(&source.Kind{Type: &corev1.Pod{}}, &handler.EnqueueRequestForOwner{
 		IsController: true,
@@ -146,7 +145,7 @@ func (r *ReconcilePodReplica) Reconcile(request reconcile.Request) (reconcile.Re
 
 		// Set PodReplica instance as the owner and controller
 		if err := controllerutil.SetControllerReference(podReplica, pod, r.scheme); err != nil {
-			reqLogger.Error(err, "💥 Failed to create a pod")
+			reqLogger.Error(err, "💥 Failed to set owner of the to be created pod")
 			return reconcile.Result{}, err
 		}
 
