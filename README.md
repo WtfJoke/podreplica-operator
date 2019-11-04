@@ -1,7 +1,11 @@
 # PodReplica Operator
+This is a companion repository to the blog post ["Kubernetes Operators: Operations-Wissen als Code"](https://blog.codecentric.de/2019/10/dein-erster-kubernetes-operator/). Please refer to the post for further information and instructions.
+
 This k8 operator is created for demonstrating purpose using the [operator-sdk](https://github.com/operator-framework/operator-sdk) in version `v0.11.0`. 
 It introduces a new Custom Ressource Definition (CRD) "PodReplica". 
 It works like a regular k8 deployment.
+
+
 
 ### Run locally (instead of Build & Publish)
 Register CRD:
